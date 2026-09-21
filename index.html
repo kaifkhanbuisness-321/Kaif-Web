@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIF WEB | Modern Web Solutions & Freelance Web Developer</title>
+    <meta name="description" content="KAIF WEB - Freelance Web Developer creating modern, high-performance, and responsive web applications for businesses worldwide.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            violet: '#8A2BE2',
+                            darkBg: '#100018',
+                            darkCard: '#160022',
+                            darkBadge: '#1a0328',
+                            lightText: '#e2d6f8',
+                            accentGlow: 'rgba(138, 43, 226, 0.4)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Style & CSS Animations -->
+    <style>
+        body {
+            background-color: #100018;
+            color: #f1e9ff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient glowing background noise */
+        .bg-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(22, 0, 34, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .glass-badge {
+            background: rgba(26, 3, 40, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.35);
+        }
+
+        /* Animated Pulsing Borders & Glows */
+        .glow-pulse {
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(138, 43, 226, 0.3), inset 0 0 10px rgba(138, 43, 226, 0.15);
+                border-color: rgba(138, 43, 226, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(138, 43, 226, 0.7), inset 0 0 18px rgba(138, 43, 226, 0.3);
+                border-color: rgba(138, 43, 226, 0.9);
+            }
+        }
+
+        /* Floating Animation */
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        /* Custom Hover Glow Card */
+        .hover-glow-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-glow-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 12px 30px -5px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #100018;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2b0340;
+            border-radius: 4px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8A2BE2;
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Dynamic Star Rating Interactive CSS */
+        .star-rating i {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .star-rating i:hover {
+            transform: scale(1.2);
+        }
+
+        /* Typing effect cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #8A2BE2;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Disable animations if user prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .float-anim, .glow-pulse {
+                animation: none !important;
+            }
+            .reveal {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-brand-violet selection:text-white">
+
+    <!-- Interactive Background Particle Canvas -->
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="bg-glow-orb w-96 h-96 bg-brand-violet top-10 left-10"></div>
+    <div class="bg-glow-orb w-80 h-80 bg-purple-900 bottom-1/3 right-10"></div>
+    <div class="bg-glow-orb w-96 h-96 bg-indigo-900 top-2/3 left-1/4"></div>
+
+    <!-- Fixed Top-Left Floating WhatsApp Button -->
+    <div class="fixed top-5 left-5 z-50 group">
+        <a id="floatingWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full glass-badge text-green-400 text-2xl md:text-3xl hover:text-white hover:bg-green-600 hover:border-green-400 transition-all duration-300 shadow-lg glow-pulse"
+           aria-label="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <!-- Tooltip -->
+        <span class="absolute left-16 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-darkBadge border border-brand-violet text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl">
+            Chat on WhatsApp
+        </span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 w-full px-4 py-3 sm:px-8">
+        <div class="max-w-6xl mx-auto glass-panel rounded-2xl px-6 py-3 flex items-center justify-between shadow-2xl">
+            <!-- Brand Logo text link -->
+            <a href="#home" class="flex items-center gap-2 text-lg font-extrabold tracking-wider text-white hover:text-brand-violet transition-colors">
+                <span class="w-3 h-3 rounded-full bg-brand-violet inline-block glow-pulse"></span>
+                <span>KAIF<span class="text-brand-violet">WEB</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="hover:text-brand-violet transition-colors duration-200">Home</a>
+                <a href="#about" class="hover:text-brand-violet transition-colors duration-200">About</a>
+                <a href="#portfolio" class="hover:text-brand-violet transition-colors duration-200">Portfolio</a>
+                <a href="#ratings" class="hover:text-brand-violet transition-colors duration-200">Reviews</a>
+                <a href="#contact" class="hover:text-brand-violet transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- CTA Mobile Button Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 text-xs font-semibold rounded-xl bg-brand-violet/20 hover:bg-brand-violet text-white border border-brand-violet/60 hover:border-brand-violet transition-all duration-300 shadow-md">
+                    Hire Me
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-200 focus:outline-none p-1" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass-panel rounded-2xl p-5 flex flex-col gap-4 text-center text-sm font-medium border border-brand-violet/30">
+            <a href="#home" class="mobile-nav-link py-2 hover:text-brand-violet border-b border-gray-800">Home</a>
+            <a href="#about" class="mobile-nav-link py-2 hover:text-brand-violet border-b border-gray-800">About</a>
+            <a href="#portfolio" class="mobile-nav-link py-2 hover:text-brand-violet border-b border-gray-800">Portfolio</a>
+            <a href="#ratings" class="mobile-nav-link py-2 hover:text-brand-violet border-b border-gray-800">Reviews</a>
+            <a href="#contact" class="mobile-nav-link py-2 hover:text-brand-violet">Contact</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 flex-grow">
+        <!-- SECTION 1: HERO SECTION -->
+        <section id="home" class="min-h-[88vh] flex flex-col items-center justify-center text-center px-4 py-16 relative">
+            <div class="max-w-4xl mx-auto flex flex-col items-center gap-8">
+                
+                <!-- Main Animated Pill Badge Heading -->
+                <div class="inline-block reveal">
+                    <h1 class="glass-badge px-8 py-3.5 rounded-full text-2xl sm:text-4xl md:text-5xl font-black tracking-widest text-white uppercase glow-pulse hover:scale-105 transition-transform duration-300">
+                        KAIF WEB
+                    </h1>
+                </div>
+
+                        <!-- Headline & Natural Client Messaging -->
+                <div class="space-y-4 max-w-2xl reveal">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
+                        Modern Web Solutions & <br class="hidden sm:inline"/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-brand-violet to-indigo-300">Digital Craftsmanship</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+                        I craft fast, modern, and high-converting websites tailored specifically for modern businesses and individuals who value design precision and smooth performance.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-4 reveal">
+                    <a href="#portfolio" class="px-8 py-3.5 rounded-xl font-semibold bg-brand-violet hover:bg-purple-700 text-white shadow-[0_0_20px_rgba(138,43,226,0.6)] hover:shadow-[0_0_30px_rgba(138,43,226,0.9)] transition-all duration-300 flex items-center gap-2 text-sm">
+                        <span>Explore Projects</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-3.5 rounded-xl font-semibold glass-panel hover:bg-brand-violet/20 text-white border border-brand-violet/50 hover:border-brand-violet transition-all duration-300 text-sm">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Key Metrics / Highlights Bar -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 pt-10 border-t border-brand-violet/20 w-full max-w-3xl mt-6 text-center reveal">
+                    <div class="p-3">
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white">100%</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Custom Responsive</p>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-violet">Clean</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Optimized Code</p>
+                    </div>
+                    <div class="p-3 col-span-2 md:col-span-1">
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white">24/7</p>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Direct Client Support</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: ABOUT SECTION -->
+        <section id="about" class="py-20 px-4 max-w-5xl mx-auto">
+            <div class="flex flex-col items-center text-center">
+                
+                <!-- Heading Badge -->
+                <div class="inline-block mb-10 reveal">
+                    <h2 class="glass-badge px-7 py-2.5 rounded-full text-xl sm:text-2xl font-black tracking-widest text-white uppercase glow-pulse">
+                        ABOUT
+                    </h2>
+                </div>
+
+                <!-- Dynamic Paragraph Container -->
+                <div class="glass-panel p-6 sm:p-10 rounded-3xl w-full border border-brand-violet/30 shadow-2xl text-left sm:text-center reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-violet/20 border border-brand-violet/50 flex items-center justify-center text-brand-violet text-xl mx-auto mb-6">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    
+                    <!-- JavaScript populates humanized text dynamically here -->
+                    <p id="aboutDynamicText" class="text-base sm:text-xl text-gray-200 leading-relaxed font-normal min-h-[120px] typing-cursor">
+                        <!-- Dynamic text injected by script.js -->
+                    </p>
+
+                    <!-- Core Competencies Badges -->
+                    <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-8 pt-6 border-t border-brand-violet/20">
+                        <span class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-darkBadge border border-brand-violet/40 text-purple-200">Clean Architecture</span>
+                        <span class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-darkBadge border border-brand-violet/40 text-purple-200">Mobile-First UX</span>
+                        <span class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-darkBadge border border-brand-violet/40 text-purple-200">Performance Optimization</span>
+                        <span class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-darkBadge border border-brand-violet/40 text-purple-200">Pixel Perfection</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: PORTFOLIO SECTION -->
+        <section id="portfolio" class="py-20 px-4 max-w-6xl mx-auto">
+            <div class="flex flex-col items-center">
+                
+                <!-- Heading Badge -->
+                <div class="inline-block mb-8 reveal">
+                    <h2 class="glass-badge px-7 py-2.5 rounded-full text-xl sm:text-2xl font-black tracking-widest text-white uppercase glow-pulse">
+                        PORTFOLIO
+                    </h2>
+                </div>
+
+                <p class="text-gray-300 text-center max-w-xl text-sm sm:text-base mb-8 reveal">
+                    A collection of modern, fully responsive web applications built with meticulous attention to design and client requirements.
+                </p>
+
+                <!-- Filter Category Buttons -->
+                <div id="portfolioFilters" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 reveal">
+                    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold glass-panel bg-brand-violet text-white border border-brand-violet transition-all">All</button>
+                    <button data-filter="web-app" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold glass-panel text-gray-300 border border-brand-violet/30 hover:border-brand-violet transition-all">Web Apps</button>
+                    <button data-filter="ecommerce" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold glass-panel text-gray-300 border border-brand-violet/30 hover:border-brand-violet transition-all">E-Commerce</button>
+                    <button data-filter="landing" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold glass-panel text-gray-300 border border-brand-violet/30 hover:border-brand-violet transition-all">Landing Pages</button>
+                </div>
+
+                <!-- Dynamic Portfolio Cards Grid -->
+                <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full">
+                    <!-- Cards will be dynamically injected by JavaScript -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: CLIENT RATINGS & REVIEWS SECTION -->
+        <section id="ratings" class="py-20 px-4 max-w-5xl mx-auto">
+            <div class="flex flex-col items-center">
+                
+                <!-- Heading Badge -->
+                <div class="inline-block mb-8 reveal">
+                    <h2 class="glass-badge px-7 py-2.5 rounded-full text-xl sm:text-2xl font-black tracking-widest text-white uppercase glow-pulse">
+                        RATINGS & REVIEWS
+                    </h2>
+                </div>
+
+                <!-- Aggregate Review Score Display Card -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl w-full text-center mb-10 border border-brand-violet/30 reveal">
+                    <div class="flex flex-col items-center justify-center gap-2">
+                        <span id="averageScoreText" class="text-4xl sm:text-5xl font-extrabold text-white">0.0</span>
+                        <div id="aggregateStars" class="text-amber-400 text-2xl space-x-1">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <p id="totalRatingsCount" class="text-xs sm:text-sm text-gray-400 font-medium">Based on 0 ratings</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Rating Form and Dynamic Review Feed Container -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+                    
+                    <!-- Form Column -->
+                    <div class="lg:col-span-5 glass-panel p-6 sm:p-8 rounded-3xl border border-brand-violet/30 reveal">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-brand-violet"></i>
+                            <span>Leave a Rating</span>
+                        </h3>
+
+                        <form id="reviewForm" class="space-y-4">
+                            <!-- Star Selection Input -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Select Rating</label>
+                                <div id="interactiveStarContainer" class="star-rating text-2xl text-gray-600 flex gap-2">
+                                    <i data-value="1" class="fa-solid fa-star"></i>
+                                    <i data-value="2" class="fa-solid fa-star"></i>
+                                    <i data-value="3" class="fa-solid fa-star"></i>
+                                    <i data-value="4" class="fa-solid fa-star"></i>
+                                    <i data-value="5" class="fa-solid fa-star"></i>
+                                </div>
+                                <input type="hidden" id="ratingValueInput" value="0" required>
+                            </div>
+
+                            <!-- Name Field -->
+                            <div>
+                                <label for="reviewerName" class="block text-xs font-semibold text-gray-300 mb-1">Your Name (Optional)</label>
+                                <input type="text" id="reviewerName" placeholder="e.g. Alex M." 
+                                       class="w-full px-4 py-2.5 rounded-xl bg-brand-darkBadge/90 border border-brand-violet/30 text-white placeholder-gray-500 focus:outline-none focus:border-brand-violet text-sm transition-all">
+                            </div>
+
+                            <!-- Review Text Field -->
+                            <div>
+                                <label for="reviewerComment" class="block text-xs font-semibold text-gray-300 mb-1">Review Message</label>
+                                <textarea id="reviewerComment" rows="3" placeholder="Share your experience working with KAIF WEB..." required
+                                          class="w-full px-4 py-2.5 rounded-xl bg-brand-darkBadge/90 border border-brand-violet/30 text-white placeholder-gray-500 focus:outline-none focus:border-brand-violet text-sm transition-all"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" 
+                                    class="w-full py-3 rounded-xl font-bold bg-brand-violet hover:bg-purple-700 text-white shadow-md hover:shadow-lg transition-all text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                                <span>Submit Review</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Submitted Reviews Feed Column -->
+                    <div class="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-3xl border border-brand-violet/30 reveal flex flex-col">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-comments text-brand-violet"></i>
+                                <span>Client Feedback</span>
+                            </span>
+                            <span id="reviewsBadgeCount" class="text-xs px-2.5 py-1 rounded-full bg-brand-violet/30 border border-brand-violet/50 text-purple-200">0</span>
+                        </h3>
+
+                        <div id="reviewsList" class="space-y-4 max-h-[380px] overflow-y-auto pr-2 flex-grow">
+                            <!-- Dynamic Reviews Injected via JS -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONTACT SECTION -->
+        <section id="contact" class="py-20 px-4 max-w-4xl mx-auto">
+            <div class="flex flex-col items-center text-center">
+                
+                <!-- Heading Badge -->
+                <div class="inline-block mb-10 reveal">
+                    <h2 class="glass-badge px-7 py-2.5 rounded-full text-xl sm:text-2xl font-black tracking-widest text-white uppercase glow-pulse">
+                        CONTACT
+                    </h2>
+                </div>
+
+                <p class="text-gray-300 max-w-xl text-sm sm:text-base mb-10 reveal">
+                    Have a project in mind or need a dedicated web developer? Reach out directly via email or WhatsApp for a fast response.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                    
+                    <!-- EMAIL CARD -->
+                    <div class="glass-panel p-8 rounded-3xl border border-brand-violet/30 hover-glow-card flex flex-col items-center justify-between reveal">
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 rounded-2xl bg-brand-violet/20 border border-brand-violet/50 flex items-center justify-center text-brand-violet text-2xl mb-4">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Email Direct</h3>
+                            <p class="text-xs text-gray-400 mb-4">Send a message directly to my inbox</p>
+                            <a id="emailDisplayLink" href="#" class="text-sm font-semibold text-brand-violet hover:underline break-all mb-6">
+                                loading...
+                            </a>
+                        </div>
+                        <button id="copyEmailBtn" class="w-full py-2.5 rounded-xl text-xs font-bold glass-panel hover:bg-brand-violet text-white border border-brand-violet/50 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Email</span>
+                        </button>
+                    </div>
+
+                    <!-- WHATSAPP CARD -->
+                    <div class="glass-panel p-8 rounded-3xl border border-brand-violet/30 hover-glow-card flex flex-col items-center justify-between reveal">
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 rounded-2xl bg-green-500/20 border border-green-500/50 flex items-center justify-center text-green-400 text-2xl mb-4">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">WhatsApp Direct</h3>
+                            <p class="text-xs text-gray-400 mb-4">Instant chat and quick discussion</p>
+                            <p id="whatsappDisplayNumber" class="text-sm font-semibold text-gray-200 mb-6">
+                                loading...
+                            </p>
+                        </div>
+                        <a id="whatsappCardBtn" href="#" target="_blank" rel="noopener noreferrer" 
+                           class="w-full py-2.5 rounded-xl text-xs font-bold bg-green-600 hover:bg-green-500 text-white transition-all shadow-lg flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Open WhatsApp Chat</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- PORTFOLIO PROJECT PREVIEW MODAL -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-panel max-w-2xl w-full rounded-3xl overflow-hidden border border-brand-violet shadow-2xl transform scale-95 transition-transform duration-300 relative">
+            
+            <!-- Close Modal Button -->
+            <button id="closeModalBtn" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-brand-violet transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content -->
+            <div id="modalImageContainer" class="h-56 sm:h-72 w-full overflow-hidden relative">
+                <img id="modalImage" src="" alt="Project Preview" class="w-full h-full object-cover">
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-white">Project Title</h3>
+                    <span id="modalCategory" class="text-xs font-bold px-3 py-1 rounded-full bg-brand-violet/30 border border-brand-violet/60 text-purple-200">Category</span>
+                </div>
+                <p id="modalDescription" class="text-gray-300 text-sm leading-relaxed mb-6">Description goes here...</p>
+                
+                <div class="flex items-center justify-end gap-4">
+                    <button id="modalCloseActionBtn" class="px-5 py-2.5 rounded-xl text-xs font-semibold glass-panel text-gray-300 hover:text-white transition-colors">
+                        Close
+                    </button>
+                    <a id="modalProjectLink" href="#" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-brand-violet hover:bg-purple-700 text-white shadow-md transition-all flex items-center gap-2">
+                        <span>Visit Live Project</span>
+                        <i class="fa-solid fa-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-brand-violet/20 py-8 px-4 text-center text-xs text-gray-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; <span id="currentYear"></span> KAIF WEB. All rights reserved.</p>
+            <p class="text-gray-400">Crafted with precision, clean code & modern aesthetics.</p>
+            <a href="#home" class="text-brand-violet hover:underline flex items-center gap-1">
+                <span>Back to top</span>
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. EASY-TO-EDIT CONFIGURATION SECTION
+           ========================================================================== */
+        const CONFIG = {
+            email: "kaifkhanbuisness@gmail.com",
+            whatsapp: "03152043813",
+        };
+
+        /* ==========================================================================
+           2. PORTFOLIO DATA ARRAY (Easily Editable)
+           ========================================================================== */
+        const PORTFOLIO_PROJECTS = [
+            {
+                id: 1,
+                title: "FinTech SaaS Dashboard",
+                category: "web-app",
+                categoryLabel: "Web App",
+                description: "A futuristic analytics platform featuring interactive charts, real-time data streaming visuals, and a modern glassmorphic interface.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/saas-dashboard"
+            },
+            {
+                id: 2,
+                title: "Luxury E-Commerce Hub",
+                category: "ecommerce",
+                categoryLabel: "E-Commerce",
+                description: "Seamless online shopping portal with fluid product micro-interactions, dark mode aesthetic, and responsive checkout flows.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/ecommerce-hub"
+            },
+            {
+                id: 3,
+                title: "AI Startup Landing Page",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                description: "High-converting digital showcase page engineered for modern AI products, optimized for high speed and mobile responsiveness.",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/ai-landing"
+            },
+            {
+                id: 4,
+                title: "Gourmet Restaurant Showcase",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                description: "Interactive dining website featuring online menu filtering, direct table booking integration, and ambient visual storytelling.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/restaurant-app"
+            },
+            {
+                id: 5,
+                title: "Creative Agency Portfolio",
+                category: "web-app",
+                categoryLabel: "Web App",
+                description: "A slick, dark-themed personal portfolio built for digital agency creators demanding smooth scroll animations and modern typography.",
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/agency-portfolio"
+            },
+            {
+                id: 6,
+                title: "Real Estate Property Portal",
+                category: "ecommerce",
+                categoryLabel: "E-Commerce",
+                description: "A modern real-estate web application featuring interactive filter controls, property galleries, and instant contact forms.",
+                image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+                url: "https://example.com/realestate-portal"
+            }
+        ];
+
+        /* ==========================================================================
+           3. HUMANIZED DYNAMIC ABOUT PARAGRAPH
+           ========================================================================== */
+        const ABOUT_PARAGRAPH = "I build modern, high-performing websites focused on clean design and smooth user experiences. As a dedicated web developer, I care deeply about performance, responsiveness, and visual details. My primary focus is taking your ideas and turning them into functional, reliable, and high-converting websites that leave a lasting impression on your clients.";
+
+        /* ==========================================================================
+           4. INITIALIZATION ON DOM LOAD
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            initDynamicConfig();
+            initBackgroundCanvas();
+            initScrollReveal();
+            initAboutDynamicTyping();
+            initPortfolioGallery();
+            initStarRatingSystem();
+            initMobileMenu();
+            setCurrentYear();
+        });
+
+        /* Setup CONFIG data across links */
+        function initDynamicConfig() {
+            const formattedWhatsappUrl = `https://wa.me/${CONFIG.whatsapp.replace(/[^0-9]/g, '')}`;
+            
+            // Floating WhatsApp Button
+            const floatingBtn = document.getElementById('floatingWhatsappBtn');
+            if (floatingBtn) floatingBtn.href = formattedWhatsappUrl;
+
+            // WhatsApp Card Button
+            const cardBtn = document.getElementById('whatsappCardBtn');
+            if (cardBtn) cardBtn.href = formattedWhatsappUrl;
+
+            // WhatsApp Display Number
+            const numberDisplay = document.getElementById('whatsappDisplayNumber');
+            if (numberDisplay) numberDisplay.textContent = CONFIG.whatsapp;
+
+            // Email Display and Mailto
+            const emailLink = document.getElementById('emailDisplayLink');
+            if (emailLink) {
+                emailLink.textContent = CONFIG.email;
+                emailLink.href = `mailto:${CONFIG.email}`;
+            }
+
+            // Email Copy Button
+            const copyBtn = document.getElementById('copyEmailBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = CONFIG.email;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+
+                    const span = copyBtn.querySelector('span');
+                    const origText = span.textContent;
+                    span.textContent = 'Copied!';
+                    copyBtn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        span.textContent = origText;
+                        copyBtn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            }
+        }
+
+        /* Set current copyright year */
+        function setCurrentYear() {
+            const yearElem = document.getElementById('currentYear');
+            if (yearElem) yearElem.textContent = new Date().getFullYear();
+        }
+
+        /* ==========================================================================
+           5. INTERACTIVE BACKGROUND PARTICLE CANVAS
+           ========================================================================== */
+        function initBackgroundCanvas() {
+            const canvas = document.getElementById('bgCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let width = (canvas.width = window.innerWidth);
+            let height = (canvas.height = window.innerHeight);
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            // Particles Array
+            const particles = [];
+            const particleCount = Math.min(Math.floor(width / 25), 45); // Responsive density
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    alpha: Math.random() * 0.5 + 0.2
+                });
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach((p) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(138, 43, 226, ${p.alpha})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animateParticles);
+            }
+
+            animateParticles();
+        }
+
+        /* ==========================================================================
+           6. SCROLL REVEAL ANIMATIONS (IntersectionObserver)
+           ========================================================================== */
+        function initScrollReveal() {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                },
+                { threshold: 0.12 }
+            );
+
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        }
+
+        /* ==========================================================================
+           7. DYNAMIC ABOUT TYPING/FADE-IN EFFECT
+           ========================================================================== */
+        function initAboutDynamicTyping() {
+            const container = document.getElementById('aboutDynamicText');
+            if (!container) return;
+
+            let index = 0;
+            let hasTriggered = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !hasTriggered) {
+                        hasTriggered = true;
+                        typeNextChar();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(container);
+
+            function typeNextChar() {
+                if (index < ABOUT_PARAGRAPH.length) {
+                    container.textContent += ABOUT_PARAGRAPH.charAt(index);
+                    index++;
+                    setTimeout(typeNextChar, 18);
+                } else {
+                    container.classList.remove('typing-cursor');
+                }
+            }
+        }
+
+        /* ==========================================================================
+           8. PORTFOLIO GALLERY & MODAL PREVIEW logic
+           ========================================================================== */
+        function initPortfolioGallery() {
+            const grid = document.getElementById('portfolioGrid');
+            const filterBtns = document.querySelectorAll('#portfolioFilters .filter-btn');
+
+            if (!grid) return;
+
+            function renderProjects(filter = 'all') {
+                grid.innerHTML = '';
+
+                const filtered = filter === 'all' 
+                    ? PORTFOLIO_PROJECTS 
+                    : PORTFOLIO_PROJECTS.filter(p => p.category === filter);
+
+                filtered.forEach(project => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-panel rounded-3xl overflow-hidden border border-brand-violet/30 hover-glow-card flex flex-col justify-between group';
+                    
+                    card.innerHTML = `
+                        <div class="relative overflow-hidden h-48 sm:h-52">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 loading="lazy" />
+                            <span class="absolute top-3 right-3 text-[10px] font-extrabold uppercase px-3 py-1 rounded-full glass-badge text-white">
+                                ${project.categoryLabel}
+                            </span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-violet transition-colors">${project.title}</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm line-clamp-3 mb-6 leading-relaxed">${project.description}</p>
+                            </div>
+                            <button data-id="${project.id}" class="view-project-btn w-full py-2.5 rounded-xl text-xs font-bold bg-brand-violet/20 hover:bg-brand-violet text-white border border-brand-violet/50 transition-all flex items-center justify-center gap-2">
+                                <span>View Project</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                });
+
+                // Attach modal open triggers
+                document.querySelectorAll('.view-project-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+                        openProjectModal(id);
+                    });
+                });
+            }
+
+            // Filter button listeners
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-brand-violet', 'text-white');
+                        b.classList.add('text-gray-300');
+                    });
+                    btn.classList.add('bg-brand-violet', 'text-white');
+                    btn.classList.remove('text-gray-300');
+
+                    const filterValue = btn.getAttribute('data-filter');
+                    renderProjects(filterValue);
+                });
+            });
+
+            renderProjects('all');
+            initModalEvents();
+        }
+
+        /* Project Modal Operations */
+        function openProjectModal(projectId) {
+            const project = PORTFOLIO_PROJECTS.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalCategory').textContent = project.categoryLabel;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalProjectLink').href = project.url;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.add('scale-95');
+        }
+
+        function initModalEvents() {
+            const closeBtn = document.getElementById('closeModalBtn');
+            const closeActionBtn = document.getElementById('modalCloseActionBtn');
+            const modal = document.getElementById('projectModal');
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (closeActionBtn) closeActionBtn.addEventListener('click', closeModal);
+
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+        }
+
+        /* ==========================================================================
+           9. CLIENT RATING & REVIEWS SYSTEM (With LocalStorage)
+           ========================================================================== */
+        function initStarRatingSystem() {
+            const stars = document.querySelectorAll('#interactiveStarContainer i');
+            const ratingInput = document.getElementById('ratingValueInput');
+            const form = document.getElementById('reviewForm');
+
+            let currentSelectedRating = 0;
+
+            // Interactive Star Hover/Clicking logic
+            stars.forEach(star => {
+                star.addEventListener('mouseover', () => {
+                    const val = parseInt(star.getAttribute('data-value'));
+                    highlightStars(val);
+                });
+
+                star.addEventListener('mouseout', () => {
+                    highlightStars(currentSelectedRating);
+                });
+
+                star.addEventListener('click', () => {
+                    currentSelectedRating = parseInt(star.getAttribute('data-value'));
+                    ratingInput.value = currentSelectedRating;
+                    highlightStars(currentSelectedRating);
+                });
+            });
+
+            function highlightStars(count) {
+                stars.forEach(s => {
+                    const v = parseInt(s.getAttribute('data-value'));
+                    if (v <= count) {
+                        s.classList.remove('text-gray-600');
+                        s.classList.add('text-amber-400');
+                    } else {
+                        s.classList.remove('text-amber-400');
+                        s.classList.add('text-gray-600');
+                    }
+                });
+            }
+
+            // Form Submit Logic
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const rating = parseInt(ratingInput.value);
+                    if (rating === 0) {
+                        alert('Please select a star rating between 1 and 5 before submitting.');
+                        return;
+                    }
+
+                    const nameInput = document.getElementById('reviewerName');
+                    const commentInput = document.getElementById('reviewerComment');
+
+                    const newReview = {
+                        id: Date.now(),
+                        name: nameInput.value.trim() || 'Anonymous Client',
+                        rating: rating,
+                        comment: commentInput.value.trim(),
+                        date: new Date().toLocaleDateString()
+                    };
+
+                    saveReview(newReview);
+                    
+                    // Reset Form
+                    form.reset();
+                    currentSelectedRating = 0;
+                    ratingInput.value = '0';
+                    highlightStars(0);
+
+                    // Refresh review display
+                    loadReviewsAndAggregate();
+                });
+            }
+
+            loadReviewsAndAggregate();
+        }
+
+        function getStoredReviews() {
+            const saved = localStorage.getItem('kaif_web_reviews');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function saveReview(review) {
+            const reviews = getStoredReviews();
+            reviews.unshift(review);
+            localStorage.setItem('kaif_web_reviews', JSON.stringify(reviews));
+        }
+
+        function loadReviewsAndAggregate() {
+            const reviews = getStoredReviews();
+            const listContainer = document.getElementById('reviewsList');
+            const avgText = document.getElementById('averageScoreText');
+            const totalCountText = document.getElementById('totalRatingsCount');
+            const badgeCount = document.getElementById('reviewsBadgeCount');
+            const aggregateStarsContainer = document.getElementById('aggregateStars');
+
+            if (badgeCount) badgeCount.textContent = reviews.length;
+
+            if (!reviews || reviews.length === 0) {
+                if (listContainer) {
+                    listContainer.innerHTML = `
+                        <div class="text-center py-8 text-gray-500 text-sm">
+                            <i class="fa-regular fa-comment-dots text-2xl mb-2 block"></i>
+                            No client reviews submitted yet. Be the first to leave feedback!
+                        </div>
+                    `;
+                }
+                if (avgText) avgText.textContent = '0.0';
+                if (totalCountText) totalCountText.textContent = 'Based on 0 ratings';
+                renderAggregateStars(0, aggregateStarsContainer);
+                return;
+            }
+
+            // Calculate Average Rating
+            const totalSum = reviews.reduce((acc, r) => acc + r.rating, 0);
+            const average = (totalSum / reviews.length).toFixed(1);
+
+            if (avgText) avgText.textContent = average;
+            if (totalCountText) totalCountText.textContent = `Based on ${reviews.length} rating${reviews.length > 1 ? 's' : ''}`;
+            renderAggregateStars(parseFloat(average), aggregateStarsContainer);
+
+            // Render Review Cards
+            if (listContainer) {
+                listContainer.innerHTML = '';
+                reviews.forEach(r => {
+                    const card = document.createElement('div');
+                    card.className = 'p-4 rounded-2xl bg-brand-darkBadge/80 border border-brand-violet/20 flex flex-col gap-2';
+
+                    let starsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        if (i <= r.rating) {
+                            starsHtml += '<i class="fa-solid fa-star text-amber-400 text-xs"></i>';
+                        } else {
+                            starsHtml += '<i class="fa-regular fa-star text-gray-600 text-xs"></i>';
+                        }
+                    }
+
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-white">${escapeHtml(r.name)}</span>
+                            <span class="text-[10px] text-gray-400">${r.date}</span>
+                        </div>
+                        <div class="flex gap-1">${starsHtml}</div>
+                        <p class="text-xs text-gray-300 leading-relaxed">${escapeHtml(r.comment)}</p>
+                    `;
+
+                    listContainer.appendChild(card);
+                });
+            }
+        }
+
+        function renderAggregateStars(rating, container) {
+            if (!container) return;
+            container.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const icon = document.createElement('i');
+                if (i <= Math.floor(rating)) {
+                    icon.className = 'fa-solid fa-star';
+                } else if (i - 0.5 <= rating) {
+                    icon.className = 'fa-solid fa-star-half-stroke';
+                } else {
+                    icon.className = 'fa-regular fa-star';
+                }
+                container.appendChild(icon);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /* ==========================================================================
+           10. MOBILE MENU TOGGLE LOGIC
+           ========================================================================== */
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+</html>
